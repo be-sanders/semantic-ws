@@ -34,6 +34,10 @@ dependencies {
 	testCompile("junit:junit")
 }
 
+configurations {
+    compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
+
 task wrapper(type: Wrapper) {
 	gradleVersion = '1.11'
 }
