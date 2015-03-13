@@ -23,7 +23,7 @@ public class JenaTestNodeController {
 
 	public void init() {
 		FileManager.get().addLocatorClassLoader(JenaTestNodeController.class.getClassLoader());
-		Model model = FileManager.get().loadModel("data/test.ttl", null, "TURTLE");
+		Model model = FileManager.get().loadModel("data/data.ttl", null, "TURTLE");
 
 		StmtIterator iter= model.listStatements();
 
@@ -43,7 +43,7 @@ public class JenaTestNodeController {
 		 }
 	}
 
-	@RequestMapping("/statements") 
+	@RequestMapping("/statements", method= RequestMapping.GET) 
 	public JenaStatement statement(@RequestParam(value="statement", defaultValue="blank")) {
 		return new Statement();
 	}
