@@ -10,13 +10,17 @@ import com.hp.hpl.jena.util.FileManager;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.concurrent.atomic.AtomicLong;
 
 import java.util.ArrayList;
 
 @RestController
 public class JenaTestNodeController {
 
-	private ArrayList<Statement> statementArrayList;
+	private ArrayList<JenaStatement> statementArrayList;
 	private final AtomicLong counter= new AtomicLong();
 	
 	public JenaTestNodeController() {
@@ -45,9 +49,10 @@ public class JenaTestNodeController {
 		 }
 	}
 
-	@RequestMapping("/statements", method= RequestMapping.GET) 
+	@RequestMapping(value = "/statements", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public JenaStatement statement(@PathVariable("id") long id) {
+	public JenaStatement statement(@PathVariable("id") int id) {
 		return statementArrayList.get(id);
 	}
 }
+

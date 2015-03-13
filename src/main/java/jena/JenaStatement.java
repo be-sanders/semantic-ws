@@ -8,7 +8,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 public class JenaStatement {
 
 	private final long id;
-	private final String label;
+	private String label;
 
 	public JenaStatement(long id, Resource s, Resource p, RDFNode o) {
 		this.id= id;
