@@ -22,6 +22,7 @@ public class StatementParserImpl {
 		FileManager.get().addLocatorClassLoader(JenaTestNodeController.class.getClassLoader());
 		Model model = FileManager.get().loadModel("data/data.ttl", null, "TURTLE");
 
+		statementArrayList= new ArrayList<JenaStatement>();
 		StmtIterator iter= model.listStatements();
 
 		try {

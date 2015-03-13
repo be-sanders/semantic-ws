@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/statements")
+@RequestMapping("/statement")
 public class JenaTestNodeController {
 
 	@Autowired
