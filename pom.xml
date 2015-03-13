@@ -63,8 +63,60 @@
     	<dependency>
       		<groupId>org.apache.jena</groupId>
       		<artifactId>jena-larq</artifactId>
-  		<version>${larq.version}</version>
+  		    <version>${larq.version}</version>
     	</dependency>
+
+      <dependency>
+          <groupId>org.apache.clerezza</groupId>
+          <artifactId>rdf.jena.parser</artifactId>
+          <version>${clerezza-rdf.jena.parser.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.clerezza</groupId>
+          <artifactId>rdf.jena.serializer</artifactId>
+          <version>${clerezza-rdf.jena.serializer.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.clerezza</groupId>
+        <artifactId>rdf.jena.commons</artifactId>
+        <version>${clerezza-rdf.jena.commons.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.hp.hpl.jena</groupId>
+            <artifactId>jena</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- Logging: SL4J -> Log4j -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j.version}</version>
+        <optional>true</optional>
+      </dependency>
+
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+        <optional>true</optional>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jruby</groupId>
+        <artifactId>jruby-core</artifactId>
+        <version>${jruby.version}</version>
+      </dependency>
+
     </dependencies>
 
     <build>
@@ -81,6 +133,18 @@
     		<id>spring-releases</id>
     		<url>http://repo.spring.io/libs-release</url>
     	</repository>
+      <repository>
+        <id>apache-snapshots-repo</id>
+        <url>https://repository.apache.org/content/repositories/snapshots/</url>
+      </repository>
+      <repository>
+        <id>apache-staging-repo</id>
+        <url>https://repository.apache.org/content/repositories/staging/</url>
+      </repository>
+      <repository>
+        <id>apache-releases-repo</id>
+        <url>https://repository.apache.org/content/repositories/releases/</url>
+      </repository>
     </repositories>
 
     <pluginRepositories>
