@@ -18,6 +18,32 @@
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-web</artifactId>
     	</dependency>
+
+    	<dependency>
+      		<groupId>org.apache.jena</groupId>
+      		<artifactId>jena-core</artifactId>
+      		<version>${jena.version}</version>
+    	</dependency>
+    	<dependency>
+      		<groupId>org.apache.jena</groupId>
+      		<artifactId>jena-iri</artifactId>
+      		<version>${iri.version}</version>
+    	</dependency>
+    	<dependency>
+      		<groupId>org.apache.jena</groupId>
+      		<artifactId>jena-arq</artifactId>
+      		<version>${arq.version}</version>
+    	</dependency>
+    	<dependency>
+      		<groupId>org.apache.jena</groupId>
+      		<artifactId>jena-tdb</artifactId>
+      		<version>${tdb.version}</version>
+    	</dependency>
+    	<dependency>
+      		<groupId>org.apache.jena</groupId>
+      		<artifactId>jena-larq</artifactId>
+  		<version>${larq.version}</version>
+    	</dependency>
     </dependencies>
 
     <build>
@@ -35,6 +61,7 @@
     		<url>http://repo.spring.io/libs-release</url>
     	</repository>
     </repositories>
+
     <pluginRepositories>
 	    <pluginRepository>
 	    	<id>spring-releases</id>
