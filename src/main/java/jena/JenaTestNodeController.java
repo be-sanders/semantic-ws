@@ -1,6 +1,5 @@
 package jena;
 
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class JenaTestNodeController {
 
 	@Autowired
-	private StatementParser statementParser;
+	private StatementParserImpl statementParser;
 
 	@RequestMapping(value= "/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
