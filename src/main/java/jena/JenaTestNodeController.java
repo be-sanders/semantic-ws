@@ -44,7 +44,8 @@ public class JenaTestNodeController {
 	}
 
 	@RequestMapping("/statements", method= RequestMapping.GET) 
-	public JenaStatement statement(@RequestParam(value="statement", defaultValue="blank")) {
-		return new Statement();
+	@ResponseBody
+	public JenaStatement statement(@PathVariable("id") long id) {
+		return statementArrayList.get(id);
 	}
 }
