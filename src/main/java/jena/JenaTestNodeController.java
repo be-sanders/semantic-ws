@@ -1,58 +1,27 @@
 package jena;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.util.FileManager;
-
+import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 
 @RestController
+@RequestMapping("/statements")
 public class JenaTestNodeController {
 
-	private ArrayList<JenaStatement> statementArrayList;
-	private final AtomicLong counter= new AtomicLong();
-	
-	public JenaTestNodeController() {
-		init();
-	}
+	@Autowired
+	private StatementParser statementParser;
 
-	public void init() {
-		FileManager.get().addLocatorClassLoader(JenaTestNodeController.class.getClassLoader());
-		Model model = FileManager.get().loadModel("data/data.ttl", null, "TURTLE");
-
-		StmtIterator iter= model.listStatements();
-
-		try {
-		 	while (iter.hasNext()) {
-		 		Statement stmt = iter.next();
-
-		 		Resource s= stmt.getSubject();
-		 		Resource p = stmt.getPredicate();
-		 		RDFNode o = stmt.getObject();
-
-		 		JenaStatement jena_stmt= new JenaStatement(counter.incrementAndGet(), s, p, o);
-	 			statementArrayList.add(jena_stmt);
-		 	}
-		 } finally {
-		 	if (iter != null) iter.close();
-		 }
-	}
-
-	@RequestMapping(value = "/statements", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value= "/{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public JenaStatement statement(@PathVariable("id") int id) {
-		return statementArrayList.get(id);
+	public JenaStatement getStatement(@PathVariable("id") int id) {
+		return statementParser.getStatement(id);
 	}
 }
 
