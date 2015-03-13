@@ -11,6 +11,11 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'maven'
+
+bootRepackage {
+	mainClass = 'jena.Application'
+}
 
 jar {
 	baseName = 'semantic_ws'
@@ -18,11 +23,14 @@ jar {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.apache.jena:jena:2.11.1")
+	compile("org.apache.jena:jena-arq:2.11.1")
 	testCompile("junit:junit")
 }
 
@@ -30,3 +38,17 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '1.11'
 }
 
+task writeNewPom << {
+    pom {
+        project {
+            inceptionYear '2008'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("$buildDir/newpom.xml")
+}
