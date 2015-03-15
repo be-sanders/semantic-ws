@@ -35,12 +35,15 @@ dependencies {
 	compile("org.apache.jena:jena:2.12.0")
 	compile("org.apache.jena:jena-core:2.12.0")
 	compile("org.apache.jena:jena-arq:2.12.0")
-	testCompile("junit:junit")
+	compile 'log4j:log4j:1.2.17'
+	testCompile "junit:junit:+"
 }
 
 configurations {
     compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 }
+
+sourceSets.test.java.srcDirs = ["test/"]
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '1.11'
