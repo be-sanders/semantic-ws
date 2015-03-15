@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/statement")
-public class JenaTestNodeController {
+class JenaTestNodeController {
 
 	@Autowired
 	private StatementParserImpl statementParser;

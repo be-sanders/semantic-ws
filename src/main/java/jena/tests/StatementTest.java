@@ -1,7 +1,8 @@
-package jena;
+package jena.tests;
 
+import jena.StatementParserImpl;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class StatementTest {
 
@@ -9,8 +10,8 @@ public class StatementTest {
     public void testStatements() {
         
     	StatementParserImpl spi= new StatementParserImpl();
-    	String s= spi.getStatement(1);
-    	assertEquals("onetwo", s);
+    	String s= spi.getStatement(1).toString();
+    	assertEquals ("literal", s);
     }
     
 }
